@@ -1,19 +1,27 @@
-import { drawBackground } from "./draw/drawBackground.js"
+
+import { Tail } from "./Tail.js"
+import { Ceil } from "./Ceil.js"
 
 const cnv = document.getElementById('canvas')
 const ctx = cnv.getContext('2d')
 
-const tailRows = 4
-const tailColumn = 4
+const GRID_SIZE = 4
+const GRID_COUNT = GRID_SIZE * GRID_SIZE
 
-const tailWidth = 200
-const tailGap = 20
+const CEIL_WIDTH = 200
+const GAP = 20
+
+const gameBoard = []
+
+for( let i =0; i < GRID_COUNT; i++) {
+  gameBoard.push(new Tail( i % GRID_SIZE, Math.floor(i / GRID_SIZE)))
+}
 
 const createBackgroundBord = () => {
-  for (let i = 0;  i < tailRows * tailColumn; i++) {
-    const background = new drawBackground(ctx, tailGap + Math.floor(i % 4) * (tailWidth + tailGap), tailGap + Math.floor(i / 4) * (tailWidth + tailGap),tailWidth, tailWidth, 10)
-    background.draw()
-  }
+  gameBoard.forEach(item => {
+    const ceil = new Ceil(ctx, item.x, item.y, CEIL_WIDTH, GAP, 10)
+    ceil.draw()
+  })
 }
 
 createBackgroundBord()
