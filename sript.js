@@ -14,13 +14,13 @@ const GAP = 20
 const gameBoard = []
 
 for( let i =0; i < GRID_COUNT; i++) {
-  gameBoard.push(new Ceil( i % GRID_SIZE, Math.floor(i / GRID_SIZE)))
+  gameBoard.push(new Tail( i % GRID_SIZE, Math.floor(i / GRID_SIZE)))
 }
 
 const createBackgroundBord = () => {
   gameBoard.forEach(item => {
-    const tail = new Tail(ctx, item.x, item.y, CEIL_WIDTH, GAP, 10)
-    tail.draw()
+    const ceil = new Ceil(ctx, item.x, item.y, CEIL_WIDTH, GAP, 10)
+    ceil.draw()
   })
 }
 
